@@ -2,62 +2,116 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.stream.Collectors;
+import java.util.*;
 
-public class WordGesser
-{
+public class WordGesser {
     private static final ArrayList<String> names = new ArrayList<>();
     private String WordData = "src/words.txt";
     private static final Scanner scanner = new Scanner(System.in);
-    private ArrayList<String> SortedNames = new ArrayList<>();
+    private static ArrayList<String> SortedNames = new ArrayList<>();
+    private String actualWord;
+    boolean[] played;
+    int counter;
+    int randomInt;
+    static int wordListSize;
 
     public static void main(String[] args) {
         WordGesser ns = new WordGesser();
         //ns.readNames();
         ns.loadNames();
-        ns.sortNames();
+
         //ns.printNames();
         //System.out.println("cloned");
         //ns.createArray();
-        ns.SortName();
-        ns.printNames();
+        ns.AddWords();
+        //ns.sortNames();
+        //ns.printNames();
+        wordListSize = SortedNames.size();
+        ns.createPlayedArray(wordListSize);
+        ns.GAME();
+        //for(Object name : SortedNames)
+        //{
+        //    System.out.println(name);
+        //}
+        //for(Object name : names)
+        //{
+        //    System.out.println(name);
+        //}
     }
 
-    public void readNames() {
-        names.clear();
-        System.out.println("Gib Namen ein (leerzeile für Eingabeende): ");
-        while (System.nanoTime() >= 0)
-        {
-            String name = scanner.nextLine();
-            if(!name.isEmpty()) names.add(name);
-            else break;
+    public void print(int a) {
+        System.out.println(a);
+    }
+
+    public void print(String a) {
+        System.out.println(a);
+    }
+
+    public void GAME() {
+
+        createGesserWord();
+        if (played[randomInt]) {
+            if (counter < SortedNames.size()) GAME();
+            else System.exit(22);
+        } else {
+            played[randomInt] = true;
+            print("Hier ist dein Wort");
+            print(actualWord);
+            GessWord();
         }
     }
 
-    public void sortNames(){
-        Collections.sort(names);
+    public void GessWord() {
+        print("Bitte gib die Lösung ein: ");
+        String input = scanner.nextLine();
+        if (Objects.equals(input, names.get(randomInt))) {
+            counter += 1;
+            print("Du hast das Word erraten!");
+            GAME();
+        } else GessWord();
     }
 
-    public void printNames(){
+    //returns RandomInteger
+    public void createGesserWord() {
+        Random random = new Random();
+
+        randomInt = random.nextInt(wordListSize);
+        actualWord = SortedNames.get(randomInt);
+    }
+
+    public void createPlayedArray(int size) {
+        played = new boolean[size];
+        for (int i = 0; i < size; i++) played[i] = false;
+    }
+    //public void readNames() {
+    //    names.clear();
+    //    System.out.println("Gib Namen ein (leerzeile für Eingabeende): ");
+    //    while (System.nanoTime() >= 0)
+    //    {
+    //        String name = scanner.nextLine();
+    //        if(!name.isEmpty()) names.add(name);
+    //        else break;
+    //    }
+    //}
+
+    public void sortNames() {
+        Collections.sort(names);
+        Collections.sort(SortedNames);
+    }
+
+    public void printNames() {
         //System.out.println("Deine Namen wurden sortiert: ");
         int number = 1;
-        for(Object name : SortedNames)
-        {
-            System.out.println(number+". "+name);
+        for (Object name : SortedNames) {
+            System.out.println(number + ". " + name);
             number += 1;
         }
     }
 
-    public void SortName(){
-        for(Object name : names)
-        {
+    public void AddWords() {
+        for (Object name : names) {
             String temp = (String) name;
-            char [] tempChar = temp.toCharArray();
+            char[] tempChar = temp.toCharArray();
             Arrays.sort(tempChar);
             SortedNames.add(String.valueOf(tempChar));
         }
@@ -65,7 +119,7 @@ public class WordGesser
 
     public void loadNames() {
         BufferedReader reader;
-        String zeile=null;
+        String zeile = null;
 
 
         try {
@@ -81,8 +135,8 @@ public class WordGesser
             //System.out.println(values.size());
             //System.out.println(zeile);
             for (String[] value : values) {
-                System.out.println((Arrays.toString(value)));
-                names.add(Arrays.toString(value).replace("[", "").replace("]", " "));
+                //System.out.println((Arrays.toString(value)));
+                names.add(Arrays.toString(value).replace("[", "").replace("]", ""));
                 //String.substring(1,strLen-1)
             }
 
