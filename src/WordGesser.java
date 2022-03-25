@@ -6,9 +6,9 @@ import java.util.*;
 
 public class WordGesser {
     private static final ArrayList<String> names = new ArrayList<>();
-    private String WordData = "src/words.txt";
+    private final String WordData = "src/words.txt";
     private static final Scanner scanner = new Scanner(System.in);
-    private static ArrayList<String> SortedNames = new ArrayList<>();
+    private static final ArrayList<String> SortedNames = new ArrayList<>();
     private String actualWord;
     boolean[] played;
     int counter;
@@ -37,10 +37,6 @@ public class WordGesser {
         //{
         //    System.out.println(name);
         //}
-    }
-
-    public void print(int a) {
-        System.out.println(a);
     }
 
     public void print(String a) {
@@ -94,24 +90,18 @@ public class WordGesser {
     //    }
     //}
 
-    public void sortNames() {
-        Collections.sort(names);
-        Collections.sort(SortedNames);
-    }
-
-    public void printNames() {
-        //System.out.println("Deine Namen wurden sortiert: ");
-        int number = 1;
-        for (Object name : SortedNames) {
-            System.out.println(number + ". " + name);
-            number += 1;
-        }
-    }
+    //public void printNames() {
+    //    //System.out.println("Deine Namen wurden sortiert: ");
+    //    int number = 1;
+    //    for (Object name : SortedNames) {
+    //        System.out.println(number + ". " + name);
+    //        number += 1;
+    //    }
+    //}
 
     public void AddWords() {
-        for (Object name : names) {
-            String temp = (String) name;
-            char[] tempChar = temp.toCharArray();
+        for (String name : names) {
+            char[] tempChar = name.toCharArray();
             Arrays.sort(tempChar);
             SortedNames.add(String.valueOf(tempChar));
         }
@@ -119,14 +109,14 @@ public class WordGesser {
 
     public void loadNames() {
         BufferedReader reader;
-        String zeile = null;
+        String zeile;
 
 
         try {
             reader = new BufferedReader(new FileReader(WordData));
             zeile = reader.readLine();
 
-            ArrayList<String[]> values = new ArrayList<String[]>();
+            ArrayList<String[]> values = new ArrayList<>();
 
             while (zeile != null) {
                 values.add(zeile.split("\n"));
