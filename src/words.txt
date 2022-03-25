@@ -1,2 +1,5 @@
 Ulm
 THU
+Informatik
+Programmieren
+Windows
