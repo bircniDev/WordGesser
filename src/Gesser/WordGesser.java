@@ -1,3 +1,5 @@
+package Gesser;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class WordGesser {
     public static void main(String[] args) {
         SystemLanguage = Locale.getDefault().getLanguage();
         SystemLocale = new Locale(SystemLanguage);
-        messages = ResourceBundle.getBundle("languages.LangResource", SystemLocale);
+        messages = ResourceBundle.getBundle("Gesser.languages.LangResource", SystemLocale);
         WordData = messages.getString("resource");
         WordGesser ns = new WordGesser();
         ns.loadNames();
@@ -37,13 +39,10 @@ public class WordGesser {
         System.out.println(a);
     }
 
-    // Implementing Fisher–Yates shuffle
     static void shuffleArray(char[] ar) {
-        // If running on Java 6 or older, use `new Random()` on RHS here
         Random rnd = ThreadLocalRandom.current();
         for (int i = ar.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
-            // Simple swap
             char a = ar[index];
             ar[index] = ar[i];
             ar[i] = a;
@@ -141,6 +140,7 @@ public class WordGesser {
             SortedNames.add(String.valueOf(tempChar));
         }
     }
+
     public void loadNames() {
         BufferedReader reader;
         String zeile;
