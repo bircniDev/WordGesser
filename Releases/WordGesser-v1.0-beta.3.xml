@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+    <dontWrapJar>false</dontWrapJar>
+    <headerType>gui</headerType>
+    <jar>/Users/nicolas/Documents/Programming/WordGesser/JARs/WordGesser-V1.0-beta.3.jar</jar>
+    <outfile>/Users/nicolas/Documents/Programming/WordGesser/Releases/WordGesser-v1.0-beta.3.exe</outfile>
+    <errTitle>No Java Installation found!</errTitle>
+    <cmdLine></cmdLine>
+    <chdir>.</chdir>
+    <priority>normal</priority>
+    <downloadUrl>http://java.com/download</downloadUrl>
+    <supportUrl></supportUrl>
+    <stayAlive>false</stayAlive>
+    <restartOnCrash>false</restartOnCrash>
+    <manifest></manifest>
+    <icon>/Users/nicolas/Documents/Programming/WordGesser/resources/word.ico</icon>
+    <singleInstance>
+        <mutexName>WordGesser</mutexName>
+        <windowTitle>WordGesser-V1.0-beta.1</windowTitle>
+    </singleInstance>
+    <jre>
+        <path></path>
+        <bundledJre64Bit>false</bundledJre64Bit>
+        <bundledJreAsFallback>false</bundledJreAsFallback>
+        <minVersion>1.8.0</minVersion>
+        <maxVersion></maxVersion>
+        <jdkPreference>preferJre</jdkPreference>
+        <runtimeBits>64/32</runtimeBits>
+    </jre>
+    <versionInfo>
+        <fileVersion>0.0.0.3</fileVersion>
+        <txtFileVersion>0.0.0.3</txtFileVersion>
+        <fileDescription>WordGesser</fileDescription>
+        <copyright>bircni</copyright>
+        <productVersion>0.0.0.3</productVersion>
+        <txtProductVersion>0.0.0.3</txtProductVersion>
+        <productName>WordGesser</productName>
+        <companyName></companyName>
+        <internalName>WGess</internalName>
+        <originalFilename>WordGesser-v1.0-beta.1.exe</originalFilename>
+        <trademarks></trademarks>
+        <language>GERMAN</language>
+    </versionInfo>
+</launch4jConfig>
