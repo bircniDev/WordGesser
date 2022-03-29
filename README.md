@@ -14,7 +14,7 @@ Nothing here yet. 🙁
 
 ### Prerequisites
 
-Java 17
+[Java 17](https://www.oracle.com/java/technologies/downloads/#java17)
 
 ### Installation
 
