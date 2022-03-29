@@ -18,7 +18,15 @@ Java 17
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repo or download a release
    ```sh
    git clone https://github.com/bircni/wordgesser.git
+   ```
+2. If you cloned the repo open it in your Code-App and run WordGesser.java .
+
+3. If you donloaded a release, open the folder where you saved the .jar-file to
+   and open a PowerShell or Commandline.
+   Type:
+   ```sh
+   java -jar WordGesser.jar
    ```
