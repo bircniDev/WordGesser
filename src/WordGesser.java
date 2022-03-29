@@ -1,8 +1,8 @@
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class WordGesser {
     private static final ArrayList<String> names = new ArrayList<>();
@@ -13,6 +13,7 @@ public class WordGesser {
     boolean[] played;
     int counter;
     int randomInt;
+    int mode = 0;
     static int wordListSize;
 
     public static void main(String[] args) {
@@ -28,18 +29,28 @@ public class WordGesser {
         System.out.println(a);
     }
 
-    public void GAME() {
-
-        createGesserWord();
-        if (played[randomInt]) {
-            if (counter < SortedNames.size()) GAME();
-            else System.exit(22);
-        } else {
-            played[randomInt] = true;
-            print("Hier ist dein Wort");
-            print(actualWord);
-            GessWord();
+    // Implementing Fisher–Yates shuffle
+    static void shuffleArray(char[] ar) {
+        // If running on Java 6 or older, use `new Random()` on RHS here
+        Random rnd = ThreadLocalRandom.current();
+        for (int i = ar.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            // Simple swap
+            char a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
         }
+    }
+
+    public static char[] moveUpperCase(char[] c) {
+        int upper = 0;
+        for (int i = 0; i < c.length; i++) {
+            if (checkCharUpperCase(c[i])) upper = i;
+        }
+        char temp = c[upper];
+        c[upper] = c[0];
+        c[0] = temp;
+        return c;
     }
 
     public void GessWord() {
@@ -52,10 +63,11 @@ public class WordGesser {
         } else GessWord();
     }
 
-    public void createGesserWord() {
-        Random random = new Random();
-        randomInt = random.nextInt(wordListSize);
-        actualWord = SortedNames.get(randomInt);
+    public static char[] deleteUpperCase(char[] c) {
+        for (int i = 0; i < c.length; i++) {
+            c[i] = Character.toLowerCase(c[i]);
+        }
+        return c;
     }
 
     public void createPlayedArray(int size) {
@@ -63,14 +75,68 @@ public class WordGesser {
         for (int i = 0; i < size; i++) played[i] = false;
     }
 
-    public void AddWords() {
-        for (String name : names) {
-            char[] tempChar = name.toCharArray();
-            Arrays.sort(tempChar);
-            SortedNames.add(String.valueOf(tempChar));
+    static boolean checkCharUpperCase(char ch) {
+        return ch >= 'A' && ch <= 'Z';
+    }
+
+    public void getMode() {
+        print("""
+                Please type in which mode you want to play
+                 1 : Easy
+                 2 : Hard
+                 3 : Ultra Hard""");
+        Scanner s = new Scanner(System.in);
+        mode = s.nextInt();
+        switch (mode) {
+            case 1 -> print("You selected easy mode");
+            case 2 -> print("You selected hard mode");
+            case 3 -> print("You selected ultra hard mode");
+            default -> {
+                print("You can't select this!");
+                getMode();
+            }
         }
     }
 
+    public void GAME() {
+        if (mode == 0) getMode();
+        createGesserWord();
+        if (played[randomInt]) {
+            if (counter < SortedNames.size()) GAME();
+            else {
+                System.exit(22);
+                print("Du hast alle Wörter erraten");
+            }
+        } else {
+            played[randomInt] = true;
+            print("Hier ist dein Wort");
+            print(actualWord);
+            GessWord();
+        }
+    }
+
+    public void createGesserWord() {
+        Random random = new Random();
+        randomInt = random.nextInt(wordListSize);
+        actualWord = SortedNames.get(randomInt);
+        if (mode == 1) {
+            char[] tempChar = actualWord.toCharArray();
+            actualWord = String.valueOf(moveUpperCase(tempChar));
+        }
+        if (mode == 3) {
+            char[] tempChar = actualWord.toCharArray();
+            actualWord = String.valueOf(deleteUpperCase(tempChar));
+        }
+    }
+
+    public void AddWords() {
+        for (String name : names) {
+            char[] tempChar = name.toCharArray();
+            shuffleArray(tempChar);
+            //if (mode == 1) moveUpperCase(tempChar); // check for easy-mode
+            SortedNames.add(String.valueOf(tempChar));
+        }
+    }
     public void loadNames() {
         BufferedReader reader;
         String zeile;
@@ -85,12 +151,8 @@ public class WordGesser {
                 values.add(zeile.split("\n"));
                 zeile = reader.readLine();
             }
-            //System.out.println(values.size());
-            //System.out.println(zeile);
             for (String[] value : values) {
-                //System.out.println((Arrays.toString(value)));
                 names.add(Arrays.toString(value).replace("[", "").replace("]", ""));
-                //String.substring(1,strLen-1)
             }
 
         } catch (IOException e) {
