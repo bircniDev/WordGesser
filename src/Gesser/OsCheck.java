@@ -1,5 +1,5 @@
 package Gesser;
-/**
+/*
  * helper class to check the operating system this Java VM runs in
  *
  * please keep the notes below as a pseudo-license
@@ -18,7 +18,7 @@ public final class OsCheck {
     };
 
     // cached result of OS detection
-    protected static OSType detectedOS;
+    private static OSType detectedOS;
 
     /**
      * detect the operating system from the os.name System property and cache
@@ -29,6 +29,7 @@ public final class OsCheck {
     public static OSType getOperatingSystemType() {
         if (detectedOS == null) {
             String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
+            System.out.println(OS);
             if ((OS.indexOf("mac") >= 0) || (OS.indexOf("darwin") >= 0)) {
                 detectedOS = OSType.MacOS;
             } else if (OS.indexOf("win") >= 0) {
