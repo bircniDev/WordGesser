@@ -1,8 +1,6 @@
 package Gesser;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ResourceBundle;
@@ -142,18 +140,20 @@ public class WordGesser {
     }
 
     public void loadNames() {
-        BufferedReader reader;
         String zeile;
-
+        InputStream is = getClass().getResourceAsStream(WordData);
+        assert is != null;
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
         try {
-            reader = new BufferedReader(new FileReader(WordData));
-            zeile = reader.readLine();
+            //reader = new BufferedReader(new FileReader(WordData));
+            zeile = br.readLine();
 
             ArrayList<String[]> values = new ArrayList<>();
 
             while (zeile != null) {
                 values.add(zeile.split("\n"));
-                zeile = reader.readLine();
+                zeile = br.readLine();
             }
             for (String[] value : values) {
                 names.add(Arrays.toString(value).replace("[", "").replace("]", ""));
