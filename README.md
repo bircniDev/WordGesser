@@ -28,5 +28,5 @@ Java 17
    and open a PowerShell or Commandline.
    Type:
    ```sh
-   java -jar WordGesser-V1.0-beta.2.jar
+   java -jar WordGesser-V1.0-beta.3.jar
    ```
