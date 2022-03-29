@@ -20,7 +20,8 @@ public class LangResource_en extends ListResourceBundle {
                 {"noSelect", "You can't select this!"},
                 {"finish", "You got all words right!"},
                 {"wordReq", "Here is your word:"},
-                {"resource", "texts/words_en.txt"}
+                {"resource", "texts/words_en.txt"},
+                {"NoSelect", "This is not existing!"}
         };
     }
 }
