@@ -1,4 +1,4 @@
-package languages;
+package Gesser.languages;
 
 import java.util.ListResourceBundle;
 
@@ -20,7 +20,7 @@ public class LangResource_de extends ListResourceBundle {
                 {"noSelect", "Das kannst du nicht auswählen!"},
                 {"finish", "Du hast alle Wörter erraten"},
                 {"wordReq", "Hier ist dein Wort"},
-                {"resource", "src/texts/words.txt"}
+                {"resource", "src/Gesser/texts/words_de.txt"}
 
         };
     }

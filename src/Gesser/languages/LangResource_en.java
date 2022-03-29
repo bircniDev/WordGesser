@@ -1,8 +1,8 @@
-package languages;
+package Gesser.languages;
 
 import java.util.ListResourceBundle;
 
-public class LangResource extends ListResourceBundle {
+public class LangResource_en extends ListResourceBundle {
 
     @Override
     protected Object[][] getContents() {
@@ -20,7 +20,7 @@ public class LangResource extends ListResourceBundle {
                 {"noSelect", "You can't select this!"},
                 {"finish", "You got all words right!"},
                 {"wordReq", "Here is your word:"},
-                {"resource", "src/texts/words.txt"}
+                {"resource", "src/Gesser/texts/words_en.txt"}
         };
     }
 }
