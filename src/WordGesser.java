@@ -3,10 +3,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.ResourceBundle;
 
 public class WordGesser {
     private static final ArrayList<String> names = new ArrayList<>();
-    private final String WordData = "src/words.txt";
+    static String SystemLanguage;
     private static final Scanner scanner = new Scanner(System.in);
     private static final ArrayList<String> SortedNames = new ArrayList<>();
     private String actualWord;
@@ -14,9 +15,16 @@ public class WordGesser {
     int counter;
     int randomInt;
     int mode = 0;
+    static Locale SystemLocale;
+    static ResourceBundle messages;
+    private static String WordData;
     static int wordListSize;
 
     public static void main(String[] args) {
+        SystemLanguage = Locale.getDefault().getLanguage();
+        SystemLocale = new Locale(SystemLanguage);
+        messages = ResourceBundle.getBundle("languages.LangResource", SystemLocale);
+        WordData = messages.getString("resource");
         WordGesser ns = new WordGesser();
         ns.loadNames();
         ns.AddWords();
@@ -54,11 +62,11 @@ public class WordGesser {
     }
 
     public void GessWord() {
-        print("Bitte gib die Lösung ein: ");
+        print(messages.getString("solutionQuestion"));
         String input = scanner.nextLine();
         if (Objects.equals(input, names.get(randomInt))) {
             counter += 1;
-            print("Du hast das Word erraten!");
+            print(messages.getString("solutionText"));
             GAME();
         } else GessWord();
     }
@@ -80,19 +88,15 @@ public class WordGesser {
     }
 
     public void getMode() {
-        print("""
-                Please type in which mode you want to play
-                 1 : Easy
-                 2 : Hard
-                 3 : Ultra Hard""");
+        print(messages.getString("mode"));
         Scanner s = new Scanner(System.in);
         mode = s.nextInt();
         switch (mode) {
-            case 1 -> print("You selected easy mode");
-            case 2 -> print("You selected hard mode");
-            case 3 -> print("You selected ultra hard mode");
+            case 1 -> print(messages.getString("easyMode"));
+            case 2 -> print(messages.getString("hardMode"));
+            case 3 -> print(messages.getString("ultrahardMode"));
             default -> {
-                print("You can't select this!");
+                print(messages.getString("NoSelect"));
                 getMode();
             }
         }
@@ -105,11 +109,11 @@ public class WordGesser {
             if (counter < SortedNames.size()) GAME();
             else {
                 System.exit(22);
-                print("Du hast alle Wörter erraten");
+                print(messages.getString("finish"));
             }
         } else {
             played[randomInt] = true;
-            print("Hier ist dein Wort");
+            print(messages.getString("wordReq"));
             print(actualWord);
             GessWord();
         }
