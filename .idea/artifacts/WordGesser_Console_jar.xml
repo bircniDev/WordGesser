@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WordGesser-Console:jar">
+    <output-path>$PROJECT_DIR$/JARs</output-path>
+    <root id="archive" name="WordGesser.jar">
+      <element id="module-output" name="WordGesser" />
+    </root>
+  </artifact>
+</component>
