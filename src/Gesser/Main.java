@@ -1,13 +1,9 @@
 package Gesser;
-/**
- * This opens a command line and runs some other class in the jar
- * @author Brandon Barajas
- */
+
 import java.io.*;
 import java.awt.GraphicsEnvironment;
-import java.net.URISyntaxException;
 public class Main{
-    public static void main (String [] args) throws IOException, InterruptedException, URISyntaxException{
+    public static void main (String [] args) throws IOException{
         Console console = System.console();
         if(console == null && !GraphicsEnvironment.isHeadless()){
             String filename = Main.class.getProtectionDomain().getCodeSource().getLocation().toString().substring(6);
