@@ -17,26 +17,11 @@ public class WordGesser {
 
     public static void main(String[] args) {
         WordGesser ns = new WordGesser();
-        //ns.readNames();
         ns.loadNames();
-
-        //ns.printNames();
-        //System.out.println("cloned");
-        //ns.createArray();
         ns.AddWords();
-        //ns.sortNames();
-        //ns.printNames();
         wordListSize = SortedNames.size();
         ns.createPlayedArray(wordListSize);
         ns.GAME();
-        //for(Object name : SortedNames)
-        //{
-        //    System.out.println(name);
-        //}
-        //for(Object name : names)
-        //{
-        //    System.out.println(name);
-        //}
     }
 
     public void print(String a) {
@@ -67,10 +52,8 @@ public class WordGesser {
         } else GessWord();
     }
 
-    //returns RandomInteger
     public void createGesserWord() {
         Random random = new Random();
-
         randomInt = random.nextInt(wordListSize);
         actualWord = SortedNames.get(randomInt);
     }
@@ -79,25 +62,6 @@ public class WordGesser {
         played = new boolean[size];
         for (int i = 0; i < size; i++) played[i] = false;
     }
-    //public void readNames() {
-    //    names.clear();
-    //    System.out.println("Gib Namen ein (leerzeile für Eingabeende): ");
-    //    while (System.nanoTime() >= 0)
-    //    {
-    //        String name = scanner.nextLine();
-    //        if(!name.isEmpty()) names.add(name);
-    //        else break;
-    //    }
-    //}
-
-    //public void printNames() {
-    //    //System.out.println("Deine Namen wurden sortiert: ");
-    //    int number = 1;
-    //    for (Object name : SortedNames) {
-    //        System.out.println(number + ". " + name);
-    //        number += 1;
-    //    }
-    //}
 
     public void AddWords() {
         for (String name : names) {
@@ -110,7 +74,6 @@ public class WordGesser {
     public void loadNames() {
         BufferedReader reader;
         String zeile;
-
 
         try {
             reader = new BufferedReader(new FileReader(WordData));
@@ -131,7 +94,7 @@ public class WordGesser {
             }
 
         } catch (IOException e) {
-            System.err.println("Error2 :"+e);
+            System.err.println("Error2 :" + e);
         }
     }
 }
