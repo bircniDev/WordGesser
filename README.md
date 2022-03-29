@@ -24,9 +24,10 @@ Java 17
    ```
 2. If you cloned the repo open it in your Code-App and run WordGesser.java .
 
-3. If you donloaded a release, open the folder where you saved the .jar-file to
+3. If you downloaded a release (Jar-File), open the folder where you saved the .jar-file to
    and open a PowerShell or Commandline.
    Type:
    ```sh
    java -jar WordGesser-V1.0-beta.3.jar
    ```
+4. If you downloaded the .exe-file, just double-click it - this should open a Console-Window
