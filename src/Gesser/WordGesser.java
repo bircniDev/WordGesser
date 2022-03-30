@@ -72,7 +72,7 @@ public class WordGesser {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Datei ist geschrieben!");
+        //System.out.println("Datei ist geschrieben!");
     }
 
     public static char[] deleteUpperCase(char[] c) {
@@ -159,7 +159,7 @@ public class WordGesser {
                 newName = String.valueOf(tempChar);
             }
             SortedNames.add(newName);
-            printState(newName, messages.getString("Saves"));
+            //printState(newName, "GameResource/ShuffleWords.txt");
         }
     }
 
