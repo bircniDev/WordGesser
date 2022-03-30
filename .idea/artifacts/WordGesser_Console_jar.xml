@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/JARs</output-path>
     <root id="archive" name="WordGesser.jar">
       <element id="module-output" name="WordGesser" />
+      <element id="module-source" name="WordGesser" />
     </root>
   </artifact>
 </component>
