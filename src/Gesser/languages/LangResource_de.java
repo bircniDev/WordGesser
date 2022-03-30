@@ -20,8 +20,11 @@ public class LangResource_de extends ListResourceBundle {
                 {"noSelect", "Das kannst du nicht auswählen!"},
                 {"finish", "Du hast alle Wörter erraten"},
                 {"wordReq", "Hier ist dein Wort"},
-                {"resource", "texts/words_de.txt"},
-                {"NoSelect", "Das gibt es nicht!"}
+                {"resource", "GameResource/words_de.txt"},
+                {"NoSelect", "Das gibt es nicht!"},
+                {"Trys", "Du hast "},
+                {"Trys2", " Versuche gebraucht."},
+                {"Saves", "resources/ShuffelWords.txt"}
         };
     }
 }
