@@ -8,14 +8,16 @@ package Gesser;
  * compare to http://svn.terracotta.org/svn/tc/dso/tags/2.6.4/code/base/common/src/com/tc/util/runtime/Os.java
  * http://www.docjar.com/html/api/org/apache/commons/lang/SystemUtils.java.html
  */
+
 import java.util.Locale;
+
 public final class OsCheck {
     /**
      * types of Operating Systems
      */
     public enum OSType {
         Windows, MacOS, Linux, Other
-    };
+    }
 
     // cached result of OS detection
     private static OSType detectedOS;
@@ -29,7 +31,7 @@ public final class OsCheck {
     public static OSType getOperatingSystemType() {
         if (detectedOS == null) {
             String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
-            System.out.println(OS);
+            //System.out.println(OS);
             if ((OS.contains("mac")) || (OS.contains("darwin"))) {
                 detectedOS = OSType.MacOS;
             } else if (OS.contains("win")) {

@@ -28,6 +28,6 @@ Nothing here yet. 🙁
    and open a PowerShell or Commandline.
    Type:
    ```sh
-   java -jar WordGesser-V1.0-beta.3.jar
+   java -jar WordGesser-V1.0.jar
    ```
 4. If you downloaded the .exe-file, just double-click it - this should open a Console-Window
