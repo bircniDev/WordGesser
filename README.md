@@ -3,7 +3,12 @@
 <!-- ABOUT THE PROJECT -->
 ### About The Project
 
-Nothing here yet. 🙁
+It's a small game.
+
+When you start it you have to chose your Gamemode (Easy, Hard, Ultra Hard).
+
+You get a word but the chars got shuffeled.
+Now you have to guess the word it should is/was.
 
 
 ### Built With
@@ -18,16 +23,25 @@ Nothing here yet. 🙁
 
 ### Installation
 
-1. Clone the repo or download a release
+1. [Clone the repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download a release](https://github.com/bircni/WordGesser/releases)
    ```sh
    git clone https://github.com/bircni/wordgesser.git
    ```
-2. If you cloned the repo open it in your Code-App and run Main.java .
+2. If you cloned the repo open it in your Code-App and run Main.java.
 
-3. If you downloaded a release (Jar-File), open the folder where you saved the .jar-file to
-   and open a PowerShell or Commandline.
-   Type:
+3. If you downloaded a release:
+
+      MacOS/Linux:  
+      - open the folder where you saved the .jar-file to and execute it or open it with your Terminal.
+      
+   Terminal:
    ```sh
    java -jar WordGesser-V1.0.jar
    ```
+   
+      Windows:
+      - execute the .exe-file by double clicking it
+      or
+      - open the folder where you saved the .jar-file to and execute it or open it with your Terminal.
+     
 4. If you downloaded the .exe-file, just double-click it - this should open a Console-Window
