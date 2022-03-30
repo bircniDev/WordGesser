@@ -1,6 +1,10 @@
-Ulm
-THU
+Java
 Informatic
 Programming
 Windows
-Sahit
+MacOS
+Linux
+Ubuntu
+IntelliJ
+Console
+Apple

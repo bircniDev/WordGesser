@@ -30,11 +30,11 @@ public final class OsCheck {
         if (detectedOS == null) {
             String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
             System.out.println(OS);
-            if ((OS.indexOf("mac") >= 0) || (OS.indexOf("darwin") >= 0)) {
+            if ((OS.contains("mac")) || (OS.contains("darwin"))) {
                 detectedOS = OSType.MacOS;
-            } else if (OS.indexOf("win") >= 0) {
+            } else if (OS.contains("win")) {
                 detectedOS = OSType.Windows;
-            } else if (OS.indexOf("nux") >= 0) {
+            } else if (OS.contains("nux")) {
                 detectedOS = OSType.Linux;
             } else {
                 detectedOS = OSType.Other;
