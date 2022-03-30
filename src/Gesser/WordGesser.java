@@ -3,7 +3,6 @@ package Gesser;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.ResourceBundle;
 
 public class WordGesser {
     private static final ArrayList<String> names = new ArrayList<>();
@@ -13,6 +12,7 @@ public class WordGesser {
     private String actualWord;
     boolean[] played;
     int counter;
+    static int trys;
     int randomInt;
     int mode = 0;
     static Locale SystemLocale;
@@ -21,6 +21,7 @@ public class WordGesser {
     static int wordListSize;
 
     public static void main(String[] args) {
+        trys = 0;
         SystemLanguage = Locale.getDefault().getLanguage();
         SystemLocale = new Locale(SystemLanguage);
         messages = ResourceBundle.getBundle("Gesser.languages.LangResource", SystemLocale);
@@ -58,14 +59,20 @@ public class WordGesser {
         return c;
     }
 
-    public void GessWord() {
-        print(messages.getString("solutionQuestion"));
-        String input = scanner.nextLine();
-        if (Objects.equals(input, names.get(randomInt))) {
-            counter += 1;
-            print(messages.getString("solutionText"));
-            GAME();
-        } else GessWord();
+    private static void printState(String t, String path) {
+        //FileOutputStream output = new FileOutputStream("resources/ShuffelWords.txt");
+        File file = new File(path);
+        try {
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter writer = new BufferedWriter(fw);
+            writer.write(t);
+            writer.newLine();
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Datei ist geschrieben!");
     }
 
     public static char[] deleteUpperCase(char[] c) {
@@ -99,21 +106,15 @@ public class WordGesser {
         }
     }
 
-    public void GAME() {
-        if (mode == 0) getMode();
-        createGesserWord();
-        if (played[randomInt]) {
-            if (counter < SortedNames.size()) GAME();
-            else {
-                System.exit(22);
-                print(messages.getString("finish"));
-            }
-        } else {
-            played[randomInt] = true;
-            print(messages.getString("wordReq"));
-            print(actualWord);
-            GessWord();
-        }
+    public void GessWord() {
+        print(messages.getString("solutionQuestion"));
+        String input = scanner.nextLine();
+        trys += 1;
+        if (Objects.equals(input, names.get(randomInt))) {
+            counter += 1;
+            print(messages.getString("solutionText"));
+            GAME();
+        } else GessWord();
     }
 
     public void createGesserWord() {
@@ -130,12 +131,35 @@ public class WordGesser {
         }
     }
 
+    public void GAME() {
+        if (mode == 0) getMode();
+        createGesserWord();
+        if (played[randomInt]) {
+            if (counter < SortedNames.size()) GAME();
+            else {
+                print(messages.getString("Trys") + trys + messages.getString("Trys2"));
+                System.exit(187);
+                print(messages.getString("finish"));
+            }
+        } else {
+            played[randomInt] = true;
+            print(messages.getString("wordReq"));
+            print(actualWord);
+            GessWord();
+        }
+    }
+
     public void AddWords() {
         for (String name : names) {
             char[] tempChar = name.toCharArray();
             shuffleArray(tempChar);
-            //if (mode == 1) moveUpperCase(tempChar); // check for easy-mode
-            SortedNames.add(String.valueOf(tempChar));
+            String newName = String.valueOf(tempChar);
+            while (newName.equalsIgnoreCase(name)) {
+                shuffleArray(tempChar);
+                newName = String.valueOf(tempChar);
+            }
+            SortedNames.add(newName);
+            printState(newName, messages.getString("Saves"));
         }
     }
 
@@ -146,7 +170,6 @@ public class WordGesser {
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
         try {
-            //reader = new BufferedReader(new FileReader(WordData));
             zeile = br.readLine();
 
             ArrayList<String[]> values = new ArrayList<>();
