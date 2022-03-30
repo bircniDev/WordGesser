@@ -22,7 +22,7 @@ Nothing here yet. 🙁
    ```sh
    git clone https://github.com/bircni/wordgesser.git
    ```
-2. If you cloned the repo open it in your Code-App and run WordGesser.java .
+2. If you cloned the repo open it in your Code-App and run Main.java .
 
 3. If you downloaded a release (Jar-File), open the folder where you saved the .jar-file to
    and open a PowerShell or Commandline.
