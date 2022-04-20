@@ -44,4 +44,4 @@ Now you have to guess the word it should is/was.
       or
       - open the folder where you saved the .jar-file to and execute it or open it with your Terminal.
      
-4. If you downloaded the .exe-file, just double-click it - this should open a Console-Window
+4. If you downloaded the .exe-file, just double-click it - this should open a Console-Window and start the Game
