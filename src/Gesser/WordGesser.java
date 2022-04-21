@@ -59,6 +59,7 @@ public class WordGesser {
         return c;
     }
 
+    /*
     private static void printState(String t, String path) {
         //FileOutputStream output = new FileOutputStream("resources/ShuffelWords.txt");
         File file = new File(path);
@@ -74,6 +75,7 @@ public class WordGesser {
         }
         //System.out.println("Datei ist geschrieben!");
     }
+    */
 
     public static char[] deleteUpperCase(char[] c) {
         for (int i = 0; i < c.length; i++) {
