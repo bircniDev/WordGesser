@@ -1,9 +1,15 @@
 package Gesser;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * GameClass - initializes all attributes and methods
+ */
 public class WordGesser {
     private static final ArrayList<String> names = new ArrayList<>();
     static String SystemLanguage;
@@ -20,7 +26,13 @@ public class WordGesser {
     private static String WordData;
     static int wordListSize;
 
-    public static void main(String[] args) {
+    /**
+     * main
+     *
+     * @param args args
+     */
+    public static void main(String[] args)
+    {
         trys = 0;
         SystemLanguage = Locale.getDefault().getLanguage();
         SystemLocale = new Locale(SystemLanguage);
@@ -34,11 +46,13 @@ public class WordGesser {
         ns.GAME();
     }
 
-    public void print(String a) {
-        System.out.println(a);
-    }
-
-    static void shuffleArray(char[] ar) {
+    /**
+     * shuffles the given Array
+     *
+     * @param ar Array to shuffle
+     */
+    static void shuffleArray(char[] ar)
+    {
         Random rnd = ThreadLocalRandom.current();
         for (int i = ar.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
@@ -48,7 +62,14 @@ public class WordGesser {
         }
     }
 
-    public static char[] moveUpperCase(char[] c) {
+    /**
+     * moves UpperCase Char
+     *
+     * @param c char-Array to work with
+     * @return moved UpperCase to first place
+     */
+    public static char[] moveUpperCase(char[] c)
+    {
         int upper = 0;
         for (int i = 0; i < c.length; i++) {
             if (checkCharUpperCase(c[i])) upper = i;
@@ -56,6 +77,20 @@ public class WordGesser {
         char temp = c[upper];
         c[upper] = c[0];
         c[0] = temp;
+        return c;
+    }
+
+    /**
+     * deletes the char wich is in UpperCase
+     *
+     * @param c char-Array to work with
+     * @return char-Array without UpperCase
+     */
+    public static char[] deleteUpperCase(char[] c)
+    {
+        for (int i = 0; i < c.length; i++) {
+            c[i] = Character.toLowerCase(c[i]);
+        }
         return c;
     }
 
@@ -77,23 +112,43 @@ public class WordGesser {
     }
     */
 
-    public static char[] deleteUpperCase(char[] c) {
-        for (int i = 0; i < c.length; i++) {
-            c[i] = Character.toLowerCase(c[i]);
-        }
-        return c;
+    /**
+     * checks if char is Uppercase
+     *
+     * @param ch char to check
+     * @return boolean
+     */
+    static boolean checkCharUpperCase(char ch)
+    {
+        return ch >= 'A' && ch <= 'Z';
     }
 
-    public void createPlayedArray(int size) {
+    /**
+     * prints a to console
+     *
+     * @param a String to output
+     */
+    public void print(String a)
+    {
+        System.out.println(a);
+    }
+
+    /**
+     * initializes the played-Array dynamically
+     *
+     * @param size for the played-Array
+     */
+    public void createPlayedArray(int size)
+    {
         played = new boolean[size];
         for (int i = 0; i < size; i++) played[i] = false;
     }
 
-    static boolean checkCharUpperCase(char ch) {
-        return ch >= 'A' && ch <= 'Z';
-    }
-
-    public void getMode() {
+    /**
+     * gets the gamemode and prints it
+     */
+    public void getMode()
+    {
         print(messages.getString("mode"));
         Scanner s = new Scanner(System.in);
         mode = s.nextInt();
@@ -108,7 +163,11 @@ public class WordGesser {
         }
     }
 
-    public void GessWord() {
+    /**
+     * asks for the word to guess
+     */
+    public void GessWord()
+    {
         print(messages.getString("solutionQuestion"));
         String input = scanner.nextLine();
         trys += 1;
@@ -119,7 +178,11 @@ public class WordGesser {
         } else GessWord();
     }
 
-    public void createGesserWord() {
+    /**
+     * gets a new word and makes it ready to get guessed
+     */
+    public void createGesserWord()
+    {
         Random random = new Random();
         randomInt = random.nextInt(wordListSize);
         actualWord = SortedNames.get(randomInt);
@@ -133,7 +196,11 @@ public class WordGesser {
         }
     }
 
-    public void GAME() {
+    /**
+     * creates Words and controls if game has finished
+     */
+    public void GAME()
+    {
         if (mode == 0) getMode();
         createGesserWord();
         if (played[randomInt]) {
@@ -151,7 +218,11 @@ public class WordGesser {
         }
     }
 
-    public void AddWords() {
+    /**
+     * adds words and shuffles them
+     */
+    public void AddWords()
+    {
         for (String name : names) {
             char[] tempChar = name.toCharArray();
             shuffleArray(tempChar);
@@ -165,7 +236,11 @@ public class WordGesser {
         }
     }
 
-    public void loadNames() {
+    /**
+     * loads Names from the GameResources
+     */
+    public void loadNames()
+    {
         String zeile;
         InputStream is = getClass().getResourceAsStream(WordData);
         assert is != null;
