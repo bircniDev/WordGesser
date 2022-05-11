@@ -94,6 +94,9 @@ public class WordGesser {
         return c;
     }
 
+    /**
+     * method to save your current state
+     */
     /*
     private static void printState(String t, String path) {
         //FileOutputStream output = new FileOutputStream("resources/ShuffelWords.txt");
