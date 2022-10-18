@@ -1,3 +1,5 @@
+[![pages-build-deployment](https://github.com/bircni/WordGesser/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/bircni/WordGesser/actions/workflows/pages/pages-build-deployment)
+
 # WordGesser
 
 <!-- ABOUT THE PROJECT -->
