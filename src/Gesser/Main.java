@@ -6,7 +6,6 @@ import java.io.IOException;
 
 public class Main {
     static OsCheck.OSType ostype = OsCheck.getOperatingSystemType();
-
     /**
      * opens game in console and starts it
      *
