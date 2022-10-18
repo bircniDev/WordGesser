@@ -1,5 +1,5 @@
 [![pages-build-deployment](https://github.com/bircni/WordGesser/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/bircni/WordGesser/actions/workflows/pages/pages-build-deployment)
-
+[![Maven Package](https://github.com/bircni/WordGesser/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/bircni/WordGesser/actions/workflows/maven-publish.yml)
 # WordGesser
 
 <!-- ABOUT THE PROJECT -->
